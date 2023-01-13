@@ -1,5 +1,5 @@
 import pygame
-
+import time
 pygame.init()
 
 white = (255,255,255)
@@ -7,16 +7,29 @@ green = (0,255,0)
 red = (255,0,0)
 black = (0,0,0)
 
-disp = pygame.display.set_mode((600,500))
+disp_width = 600
+disp_height = 600
+
+disp = pygame.display.set_mode((disp_width,disp_height))
 pygame.display.set_caption('A shitty snake game by PExK')
 
 game_over = False
 
-x_axis = 250
-y_axis = 250
+x_axis = disp_width/2
+y_axis = disp_height/2
+
+sneki_snek = 10
 
 x_tracker = 0
 y_tracker = 0
+
+sneki_snek_speed = 20
+
+text = pygame.font.SysFont(None, 35)
+
+def drawText(msg,color):
+    m = text.render(msg,True,color) 
+    disp.blit(m, [220, 265])
 
 timer = pygame.time.Clock()
 
@@ -38,15 +51,21 @@ while not game_over:
             elif event.key == pygame.K_UP:
                 x_tracker = 0
                 y_tracker = -10
+
+    if x_axis >= disp_width or x_axis < 0 or y_axis >= disp_height or y_axis < 0:
+        game_over = True
                 
     x_axis += x_tracker
     y_axis += y_tracker
     disp.fill(black)
-    pygame.draw.rect(disp, green,[x_axis, y_axis, 10, 10])
+    pygame.draw.rect(disp, green,[x_axis, y_axis, sneki_snek, sneki_snek])
     
     pygame.display.update()
     
-    timer.tick(20)
+    timer.tick(sneki_snek_speed)
 
+drawText("You sucked!", white)
+pygame.display.update()
+time.sleep(5)
 pygame.quit()
 quit()
