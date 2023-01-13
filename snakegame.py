@@ -1,5 +1,6 @@
 import pygame
 import time
+import random
 pygame.init()
 
 white = (255,255,255)
@@ -23,7 +24,10 @@ sneki_snek = 10
 x_tracker = 0
 y_tracker = 0
 
-sneki_snek_speed = 20
+food_x = round(random.randrange(0, disp_width - sneki_snek) / 10.0) * 10.0
+food_y = round(random.randrange(0, disp_width - sneki_snek) / 10.0) * 10.0
+
+sneki_snek_speed = 15
 
 text = pygame.font.SysFont(None, 35)
 
@@ -59,7 +63,7 @@ while not game_over:
     y_axis += y_tracker
     disp.fill(black)
     pygame.draw.rect(disp, green,[x_axis, y_axis, sneki_snek, sneki_snek])
-    
+    pygame.draw.rect(disp, red, [food_x, food_y, sneki_snek, sneki_snek])
     pygame.display.update()
     
     timer.tick(sneki_snek_speed)
