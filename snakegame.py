@@ -24,6 +24,11 @@ food_y = round(random.randrange(0, disp_width - sneki_snek) / 10.0) * 10.0
 sneki_snek_speed = 15
 
 text = pygame.font.SysFont(None, 35)
+score_text = pygame.font.SysFont(None, 25)
+
+def howbadyouredoing(score):
+    value = score_text.render("Your Score: " + str(score), True, white)
+    disp.blit(value, [0, 0])
 
 def drawText(msg,color):
     m = text.render(msg,True,color) 
@@ -83,6 +88,7 @@ while not game_over:
             game_close = True
 
     our_sneki_snek(sneki_snek, sneki_snek_List)
+    howbadyouredoing(the_Tail - 1)
     
     pygame.draw.rect(disp, red, [food_x, food_y, sneki_snek, sneki_snek])
     pygame.display.update()
