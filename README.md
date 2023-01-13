@@ -1,2 +1,2 @@
 # pythonprj
-My attempt of learning python, right here.
+Here you can see my shitty little basement filled with cafeine-fueled, sleepless, time-wasting python project, but well, welcome!
